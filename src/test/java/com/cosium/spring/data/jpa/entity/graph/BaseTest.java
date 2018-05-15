@@ -1,10 +1,7 @@
 package com.cosium.spring.data.jpa.entity.graph;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
-import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.github.springtestdbunit.annotation.DatabaseTearDown;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -18,14 +15,17 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
  *
  * @author Reda.Housni-Alaoui
  */
-@TestExecutionListeners({DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class,
-		TransactionalTestExecutionListener.class, DbUnitTestExecutionListener.class})
+@TestExecutionListeners({
+  DependencyInjectionTestExecutionListener.class,
+  DirtiesContextTestExecutionListener.class,
+  TransactionalTestExecutionListener.class,
+  DbUnitTestExecutionListener.class
+})
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {DataRepositoryConfiguration.class})
-@AutoConfigureDataJpa
 @DirtiesContext
 public abstract class BaseTest {
 
-	public static final String DATASET = "classpath:com/cosium/spring/data/jpa/entity/graph/dataset.xml";
-
+  public static final String DATASET =
+      "classpath:com/cosium/spring/data/jpa/entity/graph/dataset.xml";
 }

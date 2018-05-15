@@ -7,28 +7,49 @@ import javax.persistence.*;
  *
  * @author Reda.Housni-Alaoui
  */
+@NamedEntityGraphs({
+  @NamedEntityGraph(
+    name = Maker.COUNTRY_EG,
+    attributeNodes = {@NamedAttributeNode("country")}
+  )
+})
 @Entity
 public class Maker {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Access(value = AccessType.PROPERTY)
-	private long id = 0;
 
-	private String name;
+  public static final String COUNTRY_EG = "Marker.country";
 
-	public long getId() {
-		return id;
-	}
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Access(value = AccessType.PROPERTY)
+  private long id = 0;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+  private String name;
 
-	public String getName() {
-		return name;
-	}
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(nullable = false)
+  private Country country;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Country getCountry() {
+    return country;
+  }
+
+  public void setCountry(Country country) {
+    this.country = country;
+  }
 }

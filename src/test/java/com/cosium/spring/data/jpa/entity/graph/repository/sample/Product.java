@@ -7,72 +7,79 @@ import javax.persistence.*;
  *
  * @author Reda.Housni-Alaoui
  */
-@NamedEntityGraphs(value = {
-		@NamedEntityGraph(name = Product.DEFAULT_EG, attributeNodes = {
-				@NamedAttributeNode("maker")
-		}),
-		@NamedEntityGraph(name = Product.BRAND_EG, attributeNodes = {
-			@NamedAttributeNode("brand")
-		})
-})
+@NamedEntityGraphs(
+  value = {
+    @NamedEntityGraph(
+      name = Product.DEFAULT_EG,
+      attributeNodes = {@NamedAttributeNode("maker")}
+    ),
+    @NamedEntityGraph(
+      name = Product.BRAND_EG,
+      attributeNodes = {@NamedAttributeNode("brand")}
+    )
+  }
+)
 @Entity
 public class Product {
 
-	public static final String DEFAULT_EG = "Product.default";
-	public static final String BRAND_EG = "Product.brand";
+  public static final String DEFAULT_EG = "Product.default";
+  public static final String BRAND_EG = "Product.brand";
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Access(value = AccessType.PROPERTY)
-	private long id = 0;
+  public static final String BRAND_PROP_NAME = "brand";
+  public static final String MAKER_PROP_NAME = "maker";
 
-	private String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Access(value = AccessType.PROPERTY)
+  private long id = 0;
 
-	private String barcode;
+  private String name;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Brand brand;
+  private String barcode;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Maker maker;
+  @ManyToOne(fetch = FetchType.LAZY)
+  private Brand brand;
 
-	public long getId() {
-		return id;
-	}
+  @ManyToOne(fetch = FetchType.LAZY)
+  private Maker maker;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+  public long getId() {
+    return id;
+  }
 
-	public String getName() {
-		return name;
-	}
+  public void setId(long id) {
+    this.id = id;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public Brand getBrand() {
-		return brand;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public void setBrand(Brand brand) {
-		this.brand = brand;
-	}
+  public Brand getBrand() {
+    return brand;
+  }
 
-	public Maker getMaker() {
-		return maker;
-	}
+  public void setBrand(Brand brand) {
+    this.brand = brand;
+  }
 
-	public void setMaker(Maker maker) {
-		this.maker = maker;
-	}
+  public Maker getMaker() {
+    return maker;
+  }
 
-	public String getBarcode() {
-		return barcode;
-	}
+  public void setMaker(Maker maker) {
+    this.maker = maker;
+  }
 
-	public void setBarcode(String barcode) {
-		this.barcode = barcode;
-	}
+  public String getBarcode() {
+    return barcode;
+  }
+
+  public void setBarcode(String barcode) {
+    this.barcode = barcode;
+  }
 }

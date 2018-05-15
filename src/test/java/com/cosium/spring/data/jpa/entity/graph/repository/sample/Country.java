@@ -3,22 +3,12 @@ package com.cosium.spring.data.jpa.entity.graph.repository.sample;
 import javax.persistence.*;
 
 /**
- * Created on 22/11/16.
+ * Created on 17/03/17.
  *
  * @author Reda.Housni-Alaoui
  */
-@NamedEntityGraphs(
-  value = {
-    @NamedEntityGraph(
-      name = Brand.EMPTY_EG,
-      attributeNodes = {}
-    )
-  }
-)
 @Entity
-public class Brand {
-
-  public static final String EMPTY_EG = "Brand.empty";
+public class Country {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
